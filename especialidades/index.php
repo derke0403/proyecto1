@@ -1,6 +1,24 @@
 <?php
+session_start();
 require_once '../config/database.php';
 require_once '../includes/header.php';
+
+// Mostrar mensajes de error o éxito
+if (isset($_SESSION['error'])) {
+    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            ' . $_SESSION['error'] . '
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>';
+    unset($_SESSION['error']);
+}
+
+if (isset($_SESSION['success'])) {
+    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            ' . $_SESSION['success'] . '
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>';
+    unset($_SESSION['success']);
+}
 
 $stmt = $pdo->query("SELECT * FROM especialidades");
 $especialidades = $stmt->fetchAll(PDO::FETCH_ASSOC);
