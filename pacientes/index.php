@@ -45,9 +45,10 @@ $pacientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>DNI</th>
                         <th>Email</th>
                         <th>Teléfono</th>
-                        <th>Razón Consulta</th>
+                        <th>Razón de consulta</th>
                         <th>Alergias</th>
-                        <th>Tipo Sangre</th>
+                        <th>Tipo de sangre</th>
+                        <th>Fecha de registro</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -63,6 +64,7 @@ $pacientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?= $paciente['razon_consulta'] ?></td>
                         <td><?= $paciente['alergias'] ?></td>
                         <td><?= $paciente['tipo_sangre'] ?></td>
+                        <td><?= $paciente['fecha_registro'] ?></td>
                         <td>
                             <a href="edit.php?id=<?= $paciente['id_paciente'] ?>" class="btn btn-warning btn-sm">Editar</a>
                         </td>
