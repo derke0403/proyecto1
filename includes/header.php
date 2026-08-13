@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Centro de Salud</title>
-    <link rel="icon" href="/salud/public/imagenes/logo.jpg" type="image/png">
+    <link rel="icon" href="/salud/public/imagenes/logo.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6388179327.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/salud/public/css/style.css">
@@ -30,6 +30,11 @@
                     <i class="fa-solid fa-user-doctor"></i> Médicos
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/salud/pacientes/index.php">
+                    <i class="fa-solid fa-bed-pulse"></i> Pacientes
+                </a>
+</li>
         </ul>
     </div>
 </nav>

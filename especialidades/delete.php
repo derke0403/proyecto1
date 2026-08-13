@@ -11,7 +11,7 @@ $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($resultado['total'] > 0) {
     // Hay médicos, no se puede eliminar
-    $_SESSION['error'] = "❌ No puedes eliminar esta especialidad porque hay " . $resultado['total'] . " médico(s) asignado(s). Primero debes eliminar o reasignar los médicos.";
+    $_SESSION['error'] = "No puedes eliminar esta especialidad porque hay " . $resultado['total'] . " médico(s) asignado(s). Primero debes eliminar o reasignar los médicos.";
     header("Location: index.php");
     exit;
 }
@@ -20,7 +20,7 @@ if ($resultado['total'] > 0) {
 $stmt = $pdo->prepare("DELETE FROM especialidades WHERE id_especialidad = :id");
 $stmt->execute([':id' => $id]);
 
-$_SESSION['success'] = "✅ Especialidad eliminada correctamente";
+
 header("Location: index.php");
 exit;
 ?>

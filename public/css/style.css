@@ -249,3 +249,18 @@ textarea.form-control {
 .mt-4 {
     margin-top: 30px;
 }
+/* TABLA RESPONSIVE */
+.table-responsive {
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    white-space: normal;
+}
+
+.table th,
+.table td {
+    font-size: 13px;
+    padding: 12px 8px;
+}

@@ -17,3 +17,17 @@ CREATE TABLE medicos (
   fecha_contratacion datetime default current_timestamp,
   foreign key (id_especialidad) references especialidades(id_especialidad)
 );
+CREATE TABLE pacientes (
+  id_paciente int auto_increment primary key,
+  nombre varchar(150) not null,
+  dni varchar(20) not null unique,
+  email varchar(100) unique,
+  telefono varchar(20),
+  fecha_nacimiento date,
+  direccion varchar(255),
+  tipo_sangre varchar(5),
+  alergias text,
+  estado varchar(20) default 'activo',
+  fecha_registro datetime default current_timestamp
+);
+ALTER TABLE pacientes ADD COLUMN razon_consulta varchar(255) AFTER alergias;
