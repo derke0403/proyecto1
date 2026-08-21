@@ -65,4 +65,5 @@ $especialidades = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </div>
 
+
 <?php require_once '../includes/footer.php'; ?>

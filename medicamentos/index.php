@@ -20,18 +20,18 @@ if (isset($_SESSION['success'])) {
     unset($_SESSION['success']);
 }
 
-$stmt = $pdo->query("SELECT * FROM pacientes");
-$pacientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $pdo->query("SELECT * FROM medicamentos ORDER BY nombre");
+$medicamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="card">
     <div class="card-header">
         <div class="row">
             <div class="col-md-6">
-                <a href="create.php" class="btn btn-primary">Nuevo Paciente</a>
+                <a href="create.php" class="btn btn-primary">Nuevo Medicamento</a>
             </div>
             <div class="col-md-6">
-                <div class="float-end">Listado de Pacientes</div>
+                <div class="float-end">Listado de Medicamentos</div>
             </div>
         </div>
     </div>
@@ -42,32 +42,28 @@ $pacientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>DNI</th>
-                        <th>Email</th>
-                        <th>Teléfono</th>
-                        <th>Alergias</th>
-                        <th>Tipo de sangre</th>
-                        <th>Fecha de registro</th>
+                        <th>Principio Activo</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Fecha Vencimiento</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($pacientes as $paciente): ?>
+                    <?php foreach ($medicamentos as $medicamento): ?>
                     <tr>
-                        <td><?= $paciente['id_paciente'] ?></td>
-                        <td><?= $paciente['nombre'] ?></td>
-                        <td><?= $paciente['dni'] ?></td>
-                        <td><?= $paciente['email'] ?></td>
-                        <td><?= $paciente['telefono'] ?></td>
-                        <td><?= $paciente['alergias'] ?></td>
-                        <td><?= $paciente['tipo_sangre'] ?></td>
-                        <td><?= $paciente['fecha_registro'] ?></td>
+                        <td><?= $medicamento['id_medicamento'] ?></td>
+                        <td><?= $medicamento['nombre'] ?></td>
+                        <td><?= $medicamento['principio_activo'] ?></td>
+                        <td>S/<?= $medicamento['precio'] ?></td>
+                        <td><?= $medicamento['stock'] ?></td>
+                        <td><?= $medicamento['fecha_vencimiento'] ?></td>
                         <td>
-                            <a href="edit.php?id=<?= $paciente['id_paciente'] ?>" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="edit.php?id=<?= $medicamento['id_medicamento'] ?>" class="btn btn-warning btn-sm">Editar</a>
                         </td>
                         <td>
-                            <a href="delete.php?id=<?= $paciente['id_paciente'] ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a href="delete.php?id=<?= $medicamento['id_medicamento'] ?>" class="btn btn-danger btn-sm">Eliminar</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

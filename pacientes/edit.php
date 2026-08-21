@@ -39,10 +39,6 @@ $paciente = $stmt->fetch(PDO::FETCH_ASSOC);
                 <input type="text" name="direccion" class="form-control" value="<?= $paciente['direccion'] ?>">
             </div>
             <div class="mb-3">
-                <label class="form-label">Razón de Consulta</label>
-                <textarea name="razon_consulta" class="form-control" rows="2" required><?= $paciente['razon_consulta'] ?></textarea>
-            </div>
-            <div class="mb-3">
                 <label class="form-label">Alergias</label>
                 <textarea name="alergias" class="form-control" rows="3"><?= $paciente['alergias'] ?></textarea>
             </div>

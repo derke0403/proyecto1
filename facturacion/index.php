@@ -20,18 +20,22 @@ if (isset($_SESSION['success'])) {
     unset($_SESSION['success']);
 }
 
-$stmt = $pdo->query("SELECT * FROM pacientes");
-$pacientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $pdo->query("SELECT f.id_factura, f.monto, f.metodo_pago, f.estado, f.fecha_factura, f.fecha_pago, p.nombre as paciente, c.id_consulta
+                     FROM facturacion f
+                     JOIN pacientes p ON f.id_paciente = p.id_paciente
+                     JOIN consultas c ON f.id_consulta = c.id_consulta
+                     ORDER BY f.fecha_factura DESC");
+$facturas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="card">
     <div class="card-header">
         <div class="row">
             <div class="col-md-6">
-                <a href="create.php" class="btn btn-primary">Nuevo Paciente</a>
+                <a href="create.php" class="btn btn-primary">Nueva Factura</a>
             </div>
             <div class="col-md-6">
-                <div class="float-end">Listado de Pacientes</div>
+                <div class="float-end">Listado de Facturas</div>
             </div>
         </div>
     </div>
@@ -41,33 +45,31 @@ $pacientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>DNI</th>
-                        <th>Email</th>
-                        <th>Teléfono</th>
-                        <th>Alergias</th>
-                        <th>Tipo de sangre</th>
-                        <th>Fecha de registro</th>
+                        <th>Consulta ID</th>
+                        <th>Paciente</th>
+                        <th>Monto</th>
+                        <th>Método Pago</th>
+                        <th>Estado</th>
+                        <th>Fecha Factura</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($pacientes as $paciente): ?>
+                    <?php foreach ($facturas as $factura): ?>
                     <tr>
-                        <td><?= $paciente['id_paciente'] ?></td>
-                        <td><?= $paciente['nombre'] ?></td>
-                        <td><?= $paciente['dni'] ?></td>
-                        <td><?= $paciente['email'] ?></td>
-                        <td><?= $paciente['telefono'] ?></td>
-                        <td><?= $paciente['alergias'] ?></td>
-                        <td><?= $paciente['tipo_sangre'] ?></td>
-                        <td><?= $paciente['fecha_registro'] ?></td>
+                        <td><?= $factura['id_factura'] ?></td>
+                        <td><?= $factura['id_consulta'] ?></td>
+                        <td><?= $factura['paciente'] ?></td>
+                        <td>S/<?= $factura['monto'] ?></td>
+                        <td><?= $factura['metodo_pago'] ?></td>
+                        <td><?= $factura['estado'] ?></td>
+                        <td><?= $factura['fecha_factura'] ?></td>
                         <td>
-                            <a href="edit.php?id=<?= $paciente['id_paciente'] ?>" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="edit.php?id=<?= $factura['id_factura'] ?>" class="btn btn-warning btn-sm">Editar</a>
                         </td>
                         <td>
-                            <a href="delete.php?id=<?= $paciente['id_paciente'] ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a href="delete.php?id=<?= $factura['id_factura'] ?>" class="btn btn-danger btn-sm">Eliminar</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

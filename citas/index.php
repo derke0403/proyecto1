@@ -20,18 +20,22 @@ if (isset($_SESSION['success'])) {
     unset($_SESSION['success']);
 }
 
-$stmt = $pdo->query("SELECT * FROM pacientes");
-$pacientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $pdo->query("SELECT c.id_cita, c.fecha_hora, c.motivo, c.estado, c.fecha_creacion, p.nombre as paciente, m.nombre as medico
+                     FROM citas c
+                     JOIN pacientes p ON c.id_paciente = p.id_paciente
+                     JOIN medicos m ON c.id_medico = m.id_medico
+                     ORDER BY c.fecha_hora DESC");
+$citas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="card">
     <div class="card-header">
         <div class="row">
             <div class="col-md-6">
-                <a href="create.php" class="btn btn-primary">Nuevo Paciente</a>
+                <a href="create.php" class="btn btn-primary">Nueva Cita</a>
             </div>
             <div class="col-md-6">
-                <div class="float-end">Listado de Pacientes</div>
+                <div class="float-end">Listado de Citas</div>
             </div>
         </div>
     </div>
@@ -41,33 +45,29 @@ $pacientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>DNI</th>
-                        <th>Email</th>
-                        <th>Teléfono</th>
-                        <th>Alergias</th>
-                        <th>Tipo de sangre</th>
-                        <th>Fecha de registro</th>
+                        <th>Paciente</th>
+                        <th>Médico</th>
+                        <th>Fecha y Hora</th>
+                        <th>Motivo</th>
+                        <th>Estado</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($pacientes as $paciente): ?>
+                    <?php foreach ($citas as $cita): ?>
                     <tr>
-                        <td><?= $paciente['id_paciente'] ?></td>
-                        <td><?= $paciente['nombre'] ?></td>
-                        <td><?= $paciente['dni'] ?></td>
-                        <td><?= $paciente['email'] ?></td>
-                        <td><?= $paciente['telefono'] ?></td>
-                        <td><?= $paciente['alergias'] ?></td>
-                        <td><?= $paciente['tipo_sangre'] ?></td>
-                        <td><?= $paciente['fecha_registro'] ?></td>
+                        <td><?= $cita['id_cita'] ?></td>
+                        <td><?= $cita['paciente'] ?></td>
+                        <td><?= $cita['medico'] ?></td>
+                        <td><?= $cita['fecha_hora'] ?></td>
+                        <td><?= $cita['motivo'] ?></td>
+                        <td><?= $cita['estado'] ?></td>
                         <td>
-                            <a href="edit.php?id=<?= $paciente['id_paciente'] ?>" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="edit.php?id=<?= $cita['id_cita'] ?>" class="btn btn-warning btn-sm">Editar</a>
                         </td>
                         <td>
-                            <a href="delete.php?id=<?= $paciente['id_paciente'] ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a href="delete.php?id=<?= $cita['id_cita'] ?>" class="btn btn-danger btn-sm">Eliminar</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

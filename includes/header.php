@@ -34,7 +34,32 @@
                 <a class="nav-link" href="/salud/pacientes/index.php">
                     <i class="fa-solid fa-bed-pulse"></i> Pacientes
                 </a>
-</li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/salud/citas/index.php">
+                    <i class="fa-solid fa-calendar-check"></i> Citas
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/salud/consultas/index.php">
+                    <i class="fa-solid fa-file-medical"></i> Consultas
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/salud/medicamentos/index.php">
+                    <i class="fa-solid fa-pills"></i> Medicamentos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/salud/recetas/index.php">
+                    <i class="fa-regular fa-rectangle-list"></i> Recetas
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/salud/facturacion/index.php">
+                    <i class="fa-solid fa-receipt"></i> Facturación
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

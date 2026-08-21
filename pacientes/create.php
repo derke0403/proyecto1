@@ -33,10 +33,6 @@ require_once '../includes/header.php';
                 <input type="text" name="direccion" class="form-control">
             </div>
             <div class="mb-3">
-                <label class="form-label">Razón de Consulta</label>
-                <textarea name="razon_consulta" class="form-control" rows="2" required></textarea>
-            </div>
-            <div class="mb-3">
                 <label class="form-label">Alergias</label>
                 <textarea name="alergias" class="form-control" rows="3"></textarea>
             </div>

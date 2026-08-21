@@ -7,7 +7,7 @@ $descripcion = $_POST['descripcion'];
 
 $stmt = $pdo->prepare("UPDATE especialidades SET nombre = :nombre, descripcion = :descripcion WHERE id_especialidad = :id");
 $stmt->execute([':nombre' => $nombre, ':descripcion' => $descripcion, ':id' => $id]);
-
+$_SESSION['success'] = " Especialidad actualizado correctamente";
 header("Location: index.php");
 exit;
 ?>

@@ -19,7 +19,7 @@ if ($resultado['total'] > 0) {
 // Si no hay médicos, eliminar la especialidad
 $stmt = $pdo->prepare("DELETE FROM especialidades WHERE id_especialidad = :id");
 $stmt->execute([':id' => $id]);
-
+$_SESSION['success'] = " Especialidad eliminado correctamente";
 
 header("Location: index.php");
 exit;
