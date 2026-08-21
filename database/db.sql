@@ -1,3 +1,4 @@
+SET SQL_SAFE_UPDATES = 0;
 DROP DATABASE IF EXISTS centro_salud;
 CREATE DATABASE centro_salud;
 USE centro_salud;
@@ -94,7 +95,8 @@ CREATE TABLE facturacion (
 );
 
 
--- ESPECIALIDADES
+-- ESPECIALIDADES 
+DELETE FROM especialidades;
 INSERT INTO especialidades (nombre, descripcion) VALUES
 ('Cardiología', 'Especialidad del corazón y sistema cardiovascular'),
 ('Pediatría', 'Medicina para niños y adolescentes'),
@@ -102,7 +104,8 @@ INSERT INTO especialidades (nombre, descripcion) VALUES
 ('Neurología', 'Especialidad del sistema nervioso'),
 ('Oftalmología', 'Especialidad de los ojos');
 
--- MEDICOS
+-- MEDICOS 
+DELETE FROM medicos;
 INSERT INTO medicos (nombre, email, telefono, licencia_profesional, id_especialidad) VALUES
 ('Dr. Juan García', 'juan.garcia@salud.com', '931647426', 'LIC001', 1),
 ('Dra. María López', 'maria.lopez@salud.com', '956231456', 'LIC002', 2),
@@ -110,15 +113,17 @@ INSERT INTO medicos (nombre, email, telefono, licencia_profesional, id_especiali
 ('Dra. Ana Martínez', 'ana.martinez@salud.com', '923456789', 'LIC004', 4),
 ('Dr. Pedro Sánchez', 'pedro.sanchez@salud.com', '934567890', 'LIC005', 5);
 
--- PACIENTES
+-- PACIENTES 
+DELETE FROM pacientes;
 INSERT INTO pacientes (nombre, dni, email, telefono, fecha_nacimiento, direccion, tipo_sangre, alergias) VALUES
-('Pacifico Huamán', '71648131', 'pacifico@udh.edu.pe', '931647426', '2003-04-15', 'Jirón Arábigo, Huánuco', 'A+', 'Penicilina'),
-('Juan Pérez', '71648123', 'juan@udh.edu.pe', '956231456', '2002-08-20', 'Av. Principal, Huánuco', 'B+', 'Ninguna'),
-('Carlos Mendoza', '71648124', 'carlos@udh.edu.pe', '912345678', '2000-12-10', 'Calle 2, Huánuco', 'O+', 'Ibuprofeno'),
-('Rosa García', '71648125', 'rosa@udh.edu.pe', '923456789', '1998-06-05', 'Av. Secundaria, Huánuco', 'AB-', 'Ninguna'),
-('Miguel Torres', '71648126', 'miguel@udh.edu.pe', '934567890', '2001-03-25', 'Jirón Central, Huánuco', 'O-', 'Gluten');
+('Pacifico Huamán', '71648131', 'pacifico@paciente1', '931647426', '2003-04-15', 'Jirón Arábigo, Huánuco', 'A+', 'Penicilina'),
+('Juan Pérez', '71648123', 'juan@paciente2', '956231456', '2002-08-20', 'Av. Principal, Huánuco', 'B+', 'Ninguna'),
+('Carlos Mendoza', '71648124', 'carlos@paciente3', '912345678', '2000-12-10', 'Calle 2, Huánuco', 'O+', 'Ibuprofeno'),
+('Rosa García', '71648125', 'rosa@paciente4', '923456789', '1998-06-05', 'Av. Secundaria, Huánuco', 'AB-', 'Ninguna'),
+('Miguel Torres', '71648126', 'miguel@paciente5', '934567890', '2001-03-25', 'Jirón Central, Huánuco', 'O-', 'Gluten');
 
--- CITAS
+-- CITAS 
+DELETE FROM citas;
 INSERT INTO citas (id_paciente, id_medico, fecha_hora, motivo, estado) VALUES
 (1, 1, '2025-08-21 10:00:00', 'Revisión cardiaca anual', 'confirmada'),
 (2, 2, '2025-08-21 14:30:00', 'Control de desarrollo infantil', 'pendiente'),
@@ -126,7 +131,8 @@ INSERT INTO citas (id_paciente, id_medico, fecha_hora, motivo, estado) VALUES
 (4, 4, '2025-08-22 15:00:00', 'Evaluación neurológica', 'pendiente'),
 (5, 5, '2025-08-23 11:00:00', 'Examen oftalmológico', 'confirmada');
 
--- CONSULTAS
+-- CONSULTAS 
+DELETE FROM consultas;
 INSERT INTO consultas (id_paciente, id_medico, sintomas, diagnostico, notas_medico, estado) VALUES
 (1, 1, 'Palpitaciones ocasionales', 'Arritmia cardíaca leve', 'Monitorear frecuencia cardíaca', 'completada'),
 (2, 2, 'Crecimiento normal', 'Desarrollo infantil adecuado', 'Continuar evaluaciones periódicas', 'completada'),
@@ -134,15 +140,17 @@ INSERT INTO consultas (id_paciente, id_medico, sintomas, diagnostico, notas_medi
 (4, 4, 'Dolores de cabeza frecuentes', 'Migrañas crónicas', 'Prescribir tratamiento preventivo', 'completada'),
 (5, 5, 'Visión borrosa lejana', 'Miopía moderada', 'Usar lentes correctivos', 'completada');
 
--- MEDICAMENTOS
+-- MEDICAMENTOS 
+DELETE FROM medicamentos;
 INSERT INTO medicamentos (nombre, principio_activo, precio, stock, fecha_vencimiento, descripcion) VALUES
-('Ibuprofeno 400mg', 'Ibuprofen', 5.50, 100, '2026-12-31', 'Analgésico y antiinflamatorio'),
-('Amoxicilina 500mg', 'Amoxicillin', 8.00, 50, '2026-11-30', 'Antibiótico de amplio espectro'),
-('Paracetamol 500mg', 'Acetaminophen', 4.00, 150, '2027-01-31', 'Analgésico y antipirético'),
-('Loratadina 10mg', 'Loratadine', 6.50, 75, '2026-10-31', 'Antihistamínico para alergias'),
-('Omeprazol 20mg', 'Omeprazole', 9.00, 60, '2026-09-30', 'Inhibidor de bomba de protones');
+('Ibuprofeno 400mg', 'Ibuprofeno', 18.50, 100, '2026-12-31', 'Analgésico y antiinflamatorio'),
+('Amoxicilina 500mg', 'Amoxicilina', 25.00, 50, '2026-11-30', 'Antibiótico de amplio espectro'),
+('Paracetamol 500mg', 'Paracetamol', 12.00, 150, '2027-01-31', 'Analgésico y antipirético'),
+('Loratadina 10mg', 'Loratadina', 22.50, 75, '2026-10-31', 'Antihistamínico para alergias'),
+('Omeprazol 20mg', 'Omeprazol', 28.00, 60, '2026-09-30', 'Inhibidor de bomba de protones');
 
--- RECETAS
+-- RECETAS 
+DELETE FROM recetas;
 INSERT INTO recetas (id_consulta, id_medicamento, dosis, duracion, indicaciones) VALUES
 (1, 1, '1 tableta cada 8 horas', '7 días', 'Tomar con alimentos'),
 (2, 4, '1 tableta diaria', '14 días', 'No requiere alimentos'),
@@ -150,10 +158,11 @@ INSERT INTO recetas (id_consulta, id_medicamento, dosis, duracion, indicaciones)
 (4, 1, '2 tabletas cada 12 horas', '30 días', 'Para migrañas agudas'),
 (5, 5, '1 tableta diaria en ayunas', '30 días', 'Tomar 30 minutos antes de comer');
 
--- FACTURACION
+-- FACTURACION 
+DELETE FROM facturacion;
 INSERT INTO facturacion (id_consulta, id_paciente, monto, metodo_pago, estado, fecha_pago) VALUES
-(1, 1, 150.00, 'efectivo', 'pagada', '2025-08-21 10:30:00'),
-(2, 2, 120.00, 'tarjeta', 'pagada', '2025-08-21 14:45:00'),
-(3, 3, 130.00, 'transferencia', 'pendiente', NULL),
-(4, 4, 140.00, 'efectivo', 'pagada', '2025-08-22 15:15:00'),
-(5, 5, 125.00, 'tarjeta', 'pagada', '2025-08-23 11:20:00');
+(1, 1, 450.00, 'efectivo', 'pagada', '2025-08-21 10:30:00'),
+(2, 2, 380.00, 'tarjeta', 'pagada', '2025-08-21 14:45:00'),
+(3, 3, 420.00, 'transferencia', 'pendiente', NULL),
+(4, 4, 440.00, 'efectivo', 'pagada', '2025-08-22 15:15:00'),
+(5, 5, 400.00, 'tarjeta', 'pagada', '2025-08-23 11:20:00');
